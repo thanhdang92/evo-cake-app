@@ -1,8 +1,9 @@
-import { Row, Col, Button, Badge, Drawer, Dropdown } from 'antd'
+import { Row, Col, Button, Badge, Drawer, Dropdown, Popconfirm } from 'antd'
 import * as S from './styles'
 import {
   MenuOutlined,
   PhoneOutlined,
+  QuestionCircleOutlined,
   ShoppingCartOutlined,
   UserOutlined,
 } from '@ant-design/icons'
@@ -11,6 +12,7 @@ import { ROUTES } from 'constants/routes'
 import { useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutRequest } from 'redux/slicers/auth.slice'
+import { addToCartRequest, clearCartRequest } from 'redux/slicers/cart.slice'
 
 const AdminHeader = () => {
   const dispatch = useDispatch()
@@ -28,7 +30,11 @@ const AdminHeader = () => {
   const items = [
     {
       key: '1',
-      label: <S.DropDownUser>Thông tin cá nhân</S.DropDownUser>,
+      label: (
+        <Link to={ROUTES.USER.PROFILE}>
+          <S.DropDownUser>Thông tin cá nhân</S.DropDownUser>
+        </Link>
+      ),
     },
     {
       key: '2',
@@ -42,6 +48,10 @@ const AdminHeader = () => {
 
   const handleLogOut = () => {
     dispatch(logoutRequest())
+    dispatch(clearCartRequest())
+  }
+  const cancel = () => {
+    console.log('cancel')
   }
   return (
     <S.HeaderWrapper>

@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 
 import './App.css'
 import UserLayout from 'layouts/UserLayout'
@@ -13,8 +13,9 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import jwtDecode from 'jwt-decode'
 import { getUserInfoRequest } from 'redux/slicers/auth.slice'
-import { Row } from 'antd'
+import { Result, Button } from 'antd'
 import CheckoutPage from 'pages/user/Checkout'
+import ProfilePage from 'pages/user/Profile'
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -45,8 +46,23 @@ function App() {
         <Route path={ROUTES.REGISTER} element={<RegisterPage />}></Route>
         <Route path={ROUTES.USER.CART} element={<CartPage />}></Route>
         <Route path={ROUTES.USER.CHECKOUT} element={<CheckoutPage />}></Route>
+        <Route path={ROUTES.USER.PROFILE} element={<ProfilePage />}></Route>
       </Route>
-      <Route path="*" element={<div>404 Not Found</div>} />
+      <Route
+        path="*"
+        element={
+          <Result
+            status="404"
+            title="404"
+            subTitle="Sorry, the page you visited does not exist."
+            extra={
+              <Link to={ROUTES.USER.HOME}>
+                <Button type="primary">Back Home</Button>
+              </Link>
+            }
+          />
+        }
+      />
     </Routes>
   )
 }

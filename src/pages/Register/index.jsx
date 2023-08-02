@@ -34,6 +34,7 @@ const RegisterPage = () => {
           fullName: values.fullName,
           email: values.email,
           password: values.password,
+          phoneNumber: values.phoneNumber,
         },
         callback: () => navigate(ROUTES.LOGIN),
       })
@@ -126,7 +127,18 @@ const RegisterPage = () => {
                   placeholder="Password"
                 />
               </Form.Item>
-
+              <Form.Item
+                name="phoneNumber"
+                label="Số điện thoại"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Vui lòng nhập số điện thoại!',
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
               <Form.Item>
                 <Row justify="center">
                   <Button

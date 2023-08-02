@@ -34,6 +34,7 @@ function* orderProductSaga(action) {
         orderId: result.data.id,
         productId: products[i].id,
         name: products[i].name,
+        image: products[i].image,
         price: products[i].price,
         quantity: products[i].quantity,
       })

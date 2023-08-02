@@ -36,9 +36,7 @@ const ProductDetailPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { productDetail } = useSelector((state) => state.product)
   const { productList } = useSelector((state) => state.product)
-
   const { reviewList } = useSelector((state) => state.review)
-
   const { userInfo } = useSelector((state) => state.auth)
 
   useEffect(() => {
@@ -81,7 +79,7 @@ const ProductDetailPage = () => {
       })
     )
   }
-
+  console.log(userInfo.data.id)
   const handleAddToCart = () => {
     dispatch(
       addToCartRequest({
@@ -91,6 +89,7 @@ const ProductDetailPage = () => {
           image: productDetail.data.image,
           price: productDetail.data.price,
           quantity: quantity,
+          userId: 2,
         },
       })
     )

@@ -7,6 +7,15 @@
       "createdAt": 1690803994232,
       "updatedAt": 1690803994233,
       "id": 1
+    },
+    {
+      "email": "han@gmail.com",
+      "password": "$2a$10$Ui.Y1FyUSDSEhF0uE3cVQend3hMY3Y9Y4lcZkkKqSuNui6V4SUL7O",
+      "fullName": "Gia Hân",
+      "phoneNumber": "0905258165",
+      "createdAt": 1690946647254,
+      "updatedAt": 1690946647255,
+      "id": 2
     }
   ],
   "products": [
@@ -154,8 +163,289 @@
     }
   ],
   "favorites": [],
-  "orders": [],
-  "orderDetails": [],
+  "orders": [
+    {
+      "fullName": "Gia Hân",
+      "email": "han@gmail.com",
+      "phoneNumber": "0905258165",
+      "pay": 2,
+      "cityCode": "48",
+      "districtCode": "493",
+      "wardCode": "20272",
+      "address": "231/17 Nguyễn Công Trứ",
+      "cityName": "Thành phố Đà Nẵng",
+      "districtName": "Quận Sơn Trà",
+      "wardName": "Phường An Hải Bắc",
+      "userId": 2,
+      "totalPrice": 269000,
+      "status": "pending",
+      "createdAt": 1690950402799,
+      "updatedAt": 1690950402800,
+      "id": 1
+    },
+    {
+      "fullName": "Gia Hân",
+      "email": "han@gmail.com",
+      "phoneNumber": "0905258165",
+      "pay": "pay",
+      "cityCode": "48",
+      "districtCode": "493",
+      "wardCode": "20272",
+      "address": "K231/17 Nguyễn Công Trứ",
+      "cityName": "Thành phố Đà Nẵng",
+      "districtName": "Quận Sơn Trà",
+      "wardName": "Phường An Hải Bắc",
+      "userId": 2,
+      "totalPrice": 269000,
+      "status": "pending",
+      "createdAt": 1690951604010,
+      "updatedAt": 1690951604010,
+      "id": 2
+    },
+    {
+      "fullName": "Gia Hân",
+      "email": "han@gmail.com",
+      "phoneNumber": "0905258165",
+      "pay": "cod",
+      "cityCode": "79",
+      "districtCode": "770",
+      "wardCode": "27154",
+      "address": "K231/17 Nguyễn Công Trứ",
+      "cityName": "Thành phố Hồ Chí Minh",
+      "districtName": "Quận 3",
+      "wardName": "Phường 03",
+      "userId": 2,
+      "totalPrice": 549000,
+      "status": "pending",
+      "createdAt": 1690951711606,
+      "updatedAt": 1690951711606,
+      "id": 3
+    },
+    {
+      "fullName": "Thành Đặng",
+      "email": "thanh@gmail.com",
+      "phoneNumber": "0935161910",
+      "pay": "cod",
+      "cityCode": "48",
+      "districtCode": "493",
+      "wardCode": "20272",
+      "address": "231/17 Nguyễn Công Trứ",
+      "cityName": "Thành phố Đà Nẵng",
+      "districtName": "Quận Sơn Trà",
+      "wardName": "Phường An Hải Bắc",
+      "userId": 1,
+      "totalPrice": 478000,
+      "status": "pending",
+      "createdAt": 1690968653580,
+      "updatedAt": 1690968653580,
+      "id": 4
+    },
+    {
+      "fullName": "Gia Hân",
+      "email": "han@gmail.com",
+      "phoneNumber": "0905258165",
+      "pay": "cod",
+      "cityCode": "48",
+      "districtCode": "492",
+      "wardCode": "20239",
+      "address": "K231/17 Nguyễn Công Trứ",
+      "cityName": "Thành phố Đà Nẵng",
+      "districtName": "Quận Hải Châu",
+      "wardName": "Phường Hải Châu II",
+      "userId": 2,
+      "totalPrice": 105000,
+      "status": "pending",
+      "createdAt": 1690969477315,
+      "updatedAt": 1690969477315,
+      "id": 5
+    }
+  ],
+  "orderDetails": [
+    {
+      "orderId": 1,
+      "name": "Bánh Yến Mạch + gạo lức Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "price": 40000,
+      "quantity": 1,
+      "createdAt": 1690950402836,
+      "updatedAt": 1690950402836,
+      "id": 1
+    },
+    {
+      "orderId": 1,
+      "name": "Bánh Cracker AFC Kinh Đô Vị Phô Mai (8 Gói x 25g)",
+      "price": 25000,
+      "quantity": 1,
+      "createdAt": 1690950402856,
+      "updatedAt": 1690950402856,
+      "id": 2
+    },
+    {
+      "orderId": 1,
+      "name": "Bánh quy trứng muối Đài Loan 180gr",
+      "price": 199000,
+      "quantity": 1,
+      "createdAt": 1690950402876,
+      "updatedAt": 1690950402876,
+      "id": 3
+    },
+    {
+      "orderId": 1,
+      "name": "Bánh xốp Fullo Vani Sữa (Fullo Stick Wafer Vanilla Milk)",
+      "price": 5000,
+      "quantity": 1,
+      "createdAt": 1690950402892,
+      "updatedAt": 1690950402892,
+      "id": 4
+    },
+    {
+      "orderId": 2,
+      "name": "Bánh Yến Mạch + gạo lức Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "price": 40000,
+      "quantity": 1,
+      "createdAt": 1690951604045,
+      "updatedAt": 1690951604045,
+      "id": 5
+    },
+    {
+      "orderId": 2,
+      "name": "Bánh Cracker AFC Kinh Đô Vị Phô Mai (8 Gói x 25g)",
+      "price": 25000,
+      "quantity": 1,
+      "createdAt": 1690951604066,
+      "updatedAt": 1690951604066,
+      "id": 6
+    },
+    {
+      "orderId": 2,
+      "name": "Bánh quy trứng muối Đài Loan 180gr",
+      "price": 199000,
+      "quantity": 1,
+      "createdAt": 1690951604088,
+      "updatedAt": 1690951604088,
+      "id": 7
+    },
+    {
+      "orderId": 2,
+      "name": "Bánh xốp Fullo Vani Sữa (Fullo Stick Wafer Vanilla Milk)",
+      "price": 5000,
+      "quantity": 1,
+      "createdAt": 1690951604110,
+      "updatedAt": 1690951604110,
+      "id": 8
+    },
+    {
+      "orderId": 3,
+      "name": "Bánh Yến Mạch + gạo lức Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "price": 40000,
+      "quantity": 8,
+      "createdAt": 1690951711642,
+      "updatedAt": 1690951711642,
+      "id": 9
+    },
+    {
+      "orderId": 3,
+      "name": "Bánh Cracker AFC Kinh Đô Vị Phô Mai (8 Gói x 25g)",
+      "price": 25000,
+      "quantity": 1,
+      "createdAt": 1690951711661,
+      "updatedAt": 1690951711661,
+      "id": 10
+    },
+    {
+      "orderId": 3,
+      "name": "Bánh quy trứng muối Đài Loan 180gr",
+      "price": 199000,
+      "quantity": 1,
+      "createdAt": 1690951711682,
+      "updatedAt": 1690951711682,
+      "id": 11
+    },
+    {
+      "orderId": 3,
+      "name": "Bánh xốp Fullo Vani Sữa (Fullo Stick Wafer Vanilla Milk)",
+      "price": 5000,
+      "quantity": 1,
+      "createdAt": 1690951711704,
+      "updatedAt": 1690951711704,
+      "id": 12
+    },
+    {
+      "orderId": 4,
+      "name": "Bánh quy trứng muối Đài Loan 180gr",
+      "price": 199000,
+      "quantity": 2,
+      "createdAt": 1690968653615,
+      "updatedAt": 1690968653615,
+      "id": 13
+    },
+    {
+      "orderId": 4,
+      "name": "Bánh xốp Fullo Vani Sữa (Fullo Stick Wafer Vanilla Milk)",
+      "price": 5000,
+      "quantity": 1,
+      "createdAt": 1690968653639,
+      "updatedAt": 1690968653639,
+      "id": 14
+    },
+    {
+      "orderId": 4,
+      "name": "Bánh Yến Mạch + gạo lức Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "price": 40000,
+      "quantity": 1,
+      "createdAt": 1690968653662,
+      "updatedAt": 1690968653662,
+      "id": 15
+    },
+    {
+      "orderId": 4,
+      "name": "Bánh Yến Mạch + mè đen Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "price": 35000,
+      "quantity": 1,
+      "createdAt": 1690968653690,
+      "updatedAt": 1690968653690,
+      "id": 16
+    },
+    {
+      "orderId": 5,
+      "name": "Bánh gạo vị ngọt dịu One-One gói 150g",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0200615262088.png",
+      "price": 25000,
+      "quantity": 1,
+      "createdAt": 1690969477357,
+      "updatedAt": 1690969477357,
+      "id": 17
+    },
+    {
+      "orderId": 5,
+      "name": "Bánh Yến Mạch + mè đen Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0750302050200.png",
+      "price": 35000,
+      "quantity": 1,
+      "createdAt": 1690969477393,
+      "updatedAt": 1690969477393,
+      "id": 18
+    },
+    {
+      "orderId": 5,
+      "name": "Bánh Yến Mạch + gạo lức Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/2555450274082.png",
+      "price": 40000,
+      "quantity": 1,
+      "createdAt": 1690969477415,
+      "updatedAt": 1690969477415,
+      "id": 19
+    },
+    {
+      "orderId": 5,
+      "name": "Bánh xốp Fullo Vani Sữa (Fullo Stick Wafer Vanilla Milk)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/7373392361004.png",
+      "price": 5000,
+      "quantity": 1,
+      "createdAt": 1690969477432,
+      "updatedAt": 1690969477432,
+      "id": 20
+    }
+  ],
   "cities": [
     {
       "id": 10993,

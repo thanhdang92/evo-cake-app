@@ -1,8 +1,8 @@
-import { Row, Col, Button, InputNumber } from 'antd'
+import { Row, Col, Button, InputNumber, Empty, Popconfirm } from 'antd'
 import * as S from './styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { useMemo } from 'react'
-import { DeleteOutlined } from '@ant-design/icons'
+import { DeleteOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 import { removeCartRequest, updateCartRequest } from 'redux/slicers/cart.slice'
 import { Link } from 'react-router-dom'
 import { ROUTES } from 'constants/routes'
@@ -10,7 +10,7 @@ import { ROUTES } from 'constants/routes'
 const CartPage = () => {
   const dispatch = useDispatch()
   const { cartList } = useSelector((state) => state.cart)
-  console.log('🚀 ~ file: index.jsx:10 ~ CartPage ~ cartList:', cartList)
+  const { userInfo } = useSelector((state) => state.auth)
   const total = cartList.reduce(
     (total, item) => total + item.quantity * item.price,
     0
@@ -20,6 +20,7 @@ const CartPage = () => {
       updateCartRequest({
         value: value,
         productId: productId,
+        userId: userInfo.data.id,
       })
     )
   }
@@ -71,10 +72,20 @@ const CartPage = () => {
             </Col>
             <Col lg={4} md={4} xs={4}>
               <Button danger type="link">
-                <DeleteOutlined
-                  style={{ fontSize: 25 }}
-                  onClick={() => handleRemoveProduct(item.productId)}
-                />
+                <Popconfirm
+                  title="Xoá sản phẩm"
+                  description="Bạn chắc chắn muốn xoá?"
+                  onConfirm={() => handleRemoveProduct(item.productId)}
+                  icon={
+                    <QuestionCircleOutlined
+                      style={{
+                        color: 'red',
+                      }}
+                    />
+                  }
+                >
+                  <DeleteOutlined style={{ fontSize: 25 }} />
+                </Popconfirm>
               </Button>
             </Col>
           </Row>
@@ -110,10 +121,9 @@ const CartPage = () => {
                 padding: 30,
                 borderRadius: 10,
               }}
+              justify="center"
             >
-              {cartList.length > 0
-                ? renderCartList
-                : 'Khong co san pham trong gio hang'}
+              {cartList.length > 0 ? renderCartList : <Empty />}
             </Row>
           </Col>
           <Col lg={8} md={24} xs={24}>

@@ -9,6 +9,7 @@ import * as S from './styles'
 import { useDispatch } from 'react-redux'
 import { getProductListRequest } from 'redux/slicers/product.slice'
 import { getCategoryListRequest } from 'redux/slicers/category.slice'
+import { FloatButton } from 'antd'
 
 function HomePage() {
   const dispatch = useDispatch()
@@ -25,6 +26,10 @@ function HomePage() {
         <ProductList></ProductList>
         <ProductNew></ProductNew>
         <ProductNews></ProductNews>
+        <FloatButton.BackTop
+          visibilityHeight={0}
+          style={{ width: 50, height: 50, backgroundColor: '#ddac52' }}
+        />
       </S.Container>
     </S.HomeWrapper>
   )

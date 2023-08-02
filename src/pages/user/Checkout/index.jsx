@@ -1,8 +1,8 @@
 import { Row, Col, Form, Button, Input, Select, Radio, Card, Table } from 'antd'
 import * as S from './styles'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { useEffect, useMemo } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
 import {
   getCityListRequest,
   getDistrictListRequest,
@@ -10,42 +10,70 @@ import {
 } from 'redux/slicers/location.slice'
 import { orderProductRequest } from 'redux/slicers/order.slice'
 import { ROUTES } from 'constants/routes'
-
 const CheckoutPage = () => {
   const [checkoutForm] = Form.useForm()
+  const [totalPrice, setTotalPrice] = useState(0)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { cityList, districtList, wardList } = useSelector(
     (state) => state.location
   )
-
   const { cartList } = useSelector((state) => state.cart)
   const { userInfo } = useSelector((state) => state.auth)
   const initialValues = {
     fullName: userInfo.data.fullName,
     email: userInfo.data.email,
+    phoneNumber: userInfo.data.phoneNumber,
   }
   const tableColumn = [
     {
-      title: 'Name',
+      title: 'Tên sản phẩm',
       dataIndex: 'name',
       key: 'name',
+      width: '60%',
+      render: (_, item) => (
+        <S.CheckoutPageCart key={item.id}>
+          <Row gutter={10} align="middle">
+            <Col lg={6} md={8} xs={24}>
+              <img src={item.image} />
+            </Col>
+            <Col lg={18} md={16} xs={24}>
+              <S.TableName>{item.name}</S.TableName>
+            </Col>
+          </Row>
+        </S.CheckoutPageCart>
+      ),
     },
     {
-      title: 'Quantity',
+      title: 'Số lượng',
       dataIndex: 'quantity',
       key: 'quantity',
+      width: '5%',
+      render: (_, item) => (
+        <Row key={item.id} style={{ fontWeight: 500 }} justify="center">
+          {item.quantity}
+        </Row>
+      ),
     },
     {
-      title: 'Total',
+      title: 'Thành tiền',
       dataIndex: 'total',
       key: 'total',
-      render: (_, item) =>
-        `${(item.price * item.quantity).toLocaleString()} VND`,
+      render: (_, item) => (
+        <Row key={item.id} style={{ color: 'red', fontWeight: 500 }}>
+          {(item.price * item.quantity).toLocaleString()} VND
+        </Row>
+      ),
     },
   ]
+
   useEffect(() => {
     dispatch(getCityListRequest())
+    setTotalPrice(
+      cartList.reduce((total, item) => {
+        return total + item.price * item.quantity
+      }, 0)
+    )
   }, [])
 
   useEffect(() => {
@@ -55,10 +83,6 @@ const CheckoutPage = () => {
   }, [userInfo.data])
 
   const handleSubmitCheckoutForm = (values) => {
-    const totalPrice = cartList.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    )
     const { cityCode, districtCode, wardCode } = values
     const cityData = cityList.data.find((item) => item.code === cityCode)
     const districtData = districtList.data.find(
@@ -116,7 +140,26 @@ const CheckoutPage = () => {
       <S.Container>
         <S.CheckoutPageTitle>Thông tin thanh toán</S.CheckoutPageTitle>
 
-        <Row style={{ padding: 30 }}>
+        <Row style={{ padding: 30 }} gutter={[20, 16]}>
+          <Col lg={10} md={24} xs={24}>
+            <Card size="small" title="Giỏ hàng" style={{ marginBottom: 24 }}>
+              <Table
+                size="small"
+                columns={tableColumn}
+                dataSource={cartList}
+                rowKey="id"
+                pagination={false}
+              />
+            </Card>
+            <Row>
+              <Col lg={12} style={{ fontSize: 25 }}>
+                Tổng tiền:{' '}
+              </Col>
+              <Col lg={12}>
+                <S.TotalPrice>{totalPrice?.toLocaleString()} VNĐ</S.TotalPrice>
+              </Col>
+            </Row>
+          </Col>
           <Col lg={14} md={24} xs={24}>
             <Form
               layout="vertical"
@@ -174,8 +217,8 @@ const CheckoutPage = () => {
                     ]}
                   >
                     <Radio.Group>
-                      <Radio value={1}>Pay</Radio>
-                      <Radio value={2}>COD</Radio>
+                      <Radio value="pay">Pay</Radio>
+                      <Radio value="cod">COD</Radio>
                     </Radio.Group>
                   </Form.Item>
                 </Col>
@@ -242,7 +285,18 @@ const CheckoutPage = () => {
                     <Input />
                   </Form.Item>
                 </Col>
-                <Col span={24}>
+                <Col lg={12} md={24} xs={24}>
+                  <Link to={ROUTES.USER.CART}>
+                    <Row justify="center" style={{ marginTop: 20 }}>
+                      <Button
+                        style={{ width: '80%', backgroundColor: '#ddac52' }}
+                      >
+                        Trở lại
+                      </Button>
+                    </Row>
+                  </Link>
+                </Col>
+                <Col lg={12} md={24} xs={24}>
                   <Row justify="center" style={{ marginTop: 20 }}>
                     <Button
                       style={{ width: '80%', backgroundColor: '#ddac52' }}
@@ -254,17 +308,6 @@ const CheckoutPage = () => {
                 </Col>
               </Row>
             </Form>
-          </Col>
-          <Col lg={10} md={24} xs={24}>
-            <Card size="small" title="Giỏ hàng" style={{ marginBottom: 24 }}>
-              <Table
-                size="small"
-                columns={tableColumn}
-                dataSource={cartList}
-                rowKey="id"
-                pagination={false}
-              />
-            </Card>
           </Col>
         </Row>
       </S.Container>
