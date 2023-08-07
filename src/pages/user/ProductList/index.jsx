@@ -10,6 +10,8 @@ import { Link, generatePath } from 'react-router-dom'
 import { ROUTES } from 'constants/routes'
 import { PRODUCT_LIMIT } from 'constants/paging'
 import { addToCartRequest } from 'redux/slicers/cart.slice'
+import BreadcrumbComponent from '../Breadcrumb'
+import { updateBreadcrumb } from 'redux/slicers/breadcrumb.slice'
 
 const ProductListPage = () => {
   const dispatch = useDispatch()
@@ -30,6 +32,10 @@ const ProductListPage = () => {
     )
     dispatch(getCategoryListRequest())
   }, [])
+
+  useEffect(() => {
+    dispatch(updateBreadcrumb('Product')) // Thêm "Cart" vào breadcrumb khi vào trang Cart
+  }, [dispatch])
   const handleFilter = (key, values) => {
     setFilterParams({
       ...filterParams,
@@ -134,6 +140,9 @@ const ProductListPage = () => {
   return (
     <S.ProductListPageWrapper>
       <S.Container>
+        <Row>
+          <BreadcrumbComponent></BreadcrumbComponent>
+        </Row>
         <Row gutter={[16, 16]}>
           <Col lg={6} md={24} xs={24}>
             <S.CategoryWrapper>

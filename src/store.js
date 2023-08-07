@@ -8,6 +8,7 @@ import authReducer from 'redux/slicers/auth.slice'
 import cartReducer from 'redux/slicers/cart.slice'
 import locationReducer from 'redux/slicers/location.slice'
 import orderReducer from 'redux/slicers/order.slice'
+import breadcrumbReducer from 'redux/slicers/breadcrumb.slice'
 
 import rootSaga from 'redux/sagas'
 
@@ -22,6 +23,7 @@ const store = configureStore({
     cart: cartReducer,
     location: locationReducer,
     order: orderReducer,
+    breadcrumb: breadcrumbReducer,
   },
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({

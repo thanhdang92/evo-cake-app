@@ -1,11 +1,13 @@
 import { Row, Col, Button, InputNumber, Empty, Popconfirm } from 'antd'
 import * as S from './styles'
 import { useDispatch, useSelector } from 'react-redux'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { DeleteOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 import { removeCartRequest, updateCartRequest } from 'redux/slicers/cart.slice'
 import { Link } from 'react-router-dom'
 import { ROUTES } from 'constants/routes'
+import { updateBreadcrumb } from 'redux/slicers/breadcrumb.slice'
+import BreadcrumbComponent from '../Breadcrumb'
 
 const CartPage = () => {
   const dispatch = useDispatch()
@@ -15,6 +17,9 @@ const CartPage = () => {
     (total, item) => total + item.quantity * item.price,
     0
   )
+  useEffect(() => {
+    dispatch(updateBreadcrumb('Cart')) // Thêm "Cart" vào breadcrumb khi vào trang Cart
+  }, [dispatch])
   const handleOnchangeQuantity = (value, productId) => {
     dispatch(
       updateCartRequest({
@@ -96,6 +101,9 @@ const CartPage = () => {
   return (
     <S.CartPagaWrapper>
       <S.CartPagaContainer>
+        <Row>
+          <BreadcrumbComponent></BreadcrumbComponent>
+        </Row>
         <Row gutter={[16, 16]}>
           <Col lg={16} md={24} xs={24}>
             <Row

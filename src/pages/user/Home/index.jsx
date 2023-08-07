@@ -9,7 +9,12 @@ import * as S from './styles'
 import { useDispatch } from 'react-redux'
 import { getProductListRequest } from 'redux/slicers/product.slice'
 import { getCategoryListRequest } from 'redux/slicers/category.slice'
-import { FloatButton } from 'antd'
+import { Breadcrumb, FloatButton } from 'antd'
+import { Link } from 'react-router-dom'
+import {
+  resetBreadcrumb,
+  updateBreadcrumb,
+} from 'redux/slicers/breadcrumb.slice'
 
 function HomePage() {
   const dispatch = useDispatch()
@@ -17,6 +22,10 @@ function HomePage() {
     dispatch(getProductListRequest({}))
     dispatch(getCategoryListRequest())
   }, [])
+  useEffect(() => {
+    dispatch(resetBreadcrumb()) // Reset breadcrumb khi vào trang chủ
+    dispatch(updateBreadcrumb('Home')) // Thêm "Home" vào breadcrumb
+  }, [dispatch])
   return (
     <S.HomeWrapper>
       <S.Container>
