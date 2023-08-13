@@ -18,11 +18,12 @@ import {
   changePasswordSuccess,
   changePasswordFailure,
 } from 'redux/slicers/auth.slice'
+import { URL } from 'constants/urlApi'
 
 function* loginSaga(action) {
   try {
     const { data, callback } = action.payload
-    const result = yield axios.post('http://localhost:4000/login', data)
+    const result = yield axios.post(`${URL.API}login`, data)
     yield localStorage.setItem('accessToken', result.data.accessToken)
     yield callback()
     yield put(
@@ -38,7 +39,7 @@ function* loginSaga(action) {
 function* registerSaga(action) {
   try {
     const { data, callback } = action.payload
-    yield axios.post('http://localhost:4000/register', data)
+    yield axios.post(`${URL.API}register`, data)
     yield callback()
     yield put(registerSuccess())
   } catch (e) {
@@ -49,7 +50,7 @@ function* registerSaga(action) {
 function* getUserInfoSaga(action) {
   try {
     const { id } = action.payload
-    const result = yield axios.get(`http://localhost:4000/users/${id}`)
+    const result = yield axios.get(`${URL.API}users/${id}`)
     yield put(getUserInfoSuccess({ data: result.data }))
   } catch (e) {
     yield put(getUserInfoFailure({ error: 'Lỗi' }))
@@ -59,7 +60,7 @@ function* getUserInfoSaga(action) {
 function* updateUserInfoSaga(action) {
   try {
     const { id, data, callback } = action.payload
-    const result = yield axios.patch(`http://localhost:4000/users/${id}`, data)
+    const result = yield axios.patch(`${URL.API}users/${id}`, data)
     yield callback()
     yield put(updateUserInfoSuccess({ data: result.data }))
   } catch (e) {
@@ -70,11 +71,11 @@ function* updateUserInfoSaga(action) {
 function* changePasswordSaga(action) {
   try {
     const { id, data, callback } = action.payload
-    yield axios.post('http://localhost:4000/login', {
+    yield axios.post(`${URL.API}login`, {
       email: data.email,
       password: data.password,
     })
-    const result = yield axios.patch(`http://localhost:4000/users/${id}`, {
+    const result = yield axios.patch(`${URL.API}users/${id}`, {
       password: data.newPassword,
     })
     callback()

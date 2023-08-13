@@ -9,7 +9,7 @@ import {
   getProductDetailSuccess,
   getProductDetailFailure,
 } from 'redux/slicers/product.slice'
-
+import { URL } from 'constants/urlApi'
 function* getProductListSaga(action) {
   try {
     const { page, limit, categoryId, keyword, sort, more } = action.payload
@@ -17,7 +17,7 @@ function* getProductListSaga(action) {
       _sort: sort.split('.')[0],
       _order: sort.split('.')[1],
     }
-    const result = yield axios.get('http://localhost:4000/products', {
+    const result = yield axios.get(`${URL.API}products`, {
       params: {
         _expand: 'category',
         _embed: ['reviews', 'favorites'],
@@ -47,7 +47,7 @@ function* getProductListSaga(action) {
 function* getProductDetailSaga(action) {
   try {
     const { id } = action.payload
-    const result = yield axios.get(`http://localhost:4000/products/${id}`, {
+    const result = yield axios.get(`${URL.API}products/${id}`, {
       params: {
         _expand: 'category',
         _embed: 'favorites',

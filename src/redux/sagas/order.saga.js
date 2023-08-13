@@ -9,11 +9,11 @@ import {
   orderProductSuccess,
   orderProductFailure,
 } from 'redux/slicers/order.slice'
-
+import { URL } from 'constants/urlApi'
 function* getOrderListSaga(action) {
   try {
     const { userId } = action.payload
-    const result = yield axios.get('http://localhost:4000/orders', {
+    const result = yield axios.get(`${URL.API}orders`, {
       params: {
         userId: userId,
         _embed: 'orderDetails',
@@ -28,9 +28,9 @@ function* getOrderListSaga(action) {
 function* orderProductSaga(action) {
   try {
     const { data, products, callback } = action.payload
-    const result = yield axios.post('http://localhost:4000/orders', data)
+    const result = yield axios.post(`${URL.API}orders`, data)
     for (let i = 0; i < products.length; i++) {
-      yield axios.post('http://localhost:4000/orderDetails', {
+      yield axios.post(`${URL.API}orderDetails`, {
         orderId: result.data.id,
         productId: products[i].id,
         name: products[i].name,

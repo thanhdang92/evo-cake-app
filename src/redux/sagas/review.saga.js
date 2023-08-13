@@ -13,7 +13,7 @@ import {
 function* getReviewListSaga(action) {
   try {
     const { productId } = action.payload
-    const result = yield axios.get('http://localhost:4000/reviews', {
+    const result = yield axios.get(`${URL.API}reviews`, {
       params: {
         _expand: 'user',
         _sort: 'id',
@@ -30,7 +30,7 @@ function* getReviewListSaga(action) {
 function* createReviewSaga(action) {
   try {
     const { data, callback } = action.payload
-    const result = yield axios.post('http://localhost:4000/reviews', data)
+    const result = yield axios.post(`${URL.API}reviews`, data)
     yield callback()
     yield put(getReviewListRequest({ productId: data.productId }))
     yield put(createReviewSuccess({ data: result.data }))

@@ -12,7 +12,7 @@ import {
   unFavoriteProductSuccess,
   unFavoriteProductFailure,
 } from 'redux/slicers/favorite.slice'
-
+import { URL } from 'constants/urlApi'
 function* getFavoriteListSaga(action) {
   try {
     const { userId } = action.payload
@@ -43,7 +43,7 @@ function* favoriteProductSaga(action) {
 function* unFavoriteProductSaga(action) {
   try {
     const { id } = action.payload
-    yield axios.delete(`http://localhost:4000/favorites/${id}`)
+    yield axios.delete(`${URL.API}favorites/${id}`)
     yield put(unFavoriteProductSuccess({ id: id }))
   } catch (e) {
     yield put(unFavoriteProductFailure({ error: 'Lỗi' }))

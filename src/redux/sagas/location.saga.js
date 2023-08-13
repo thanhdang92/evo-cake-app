@@ -12,10 +12,10 @@ import {
   getWardListSuccess,
   getWardListFailure,
 } from 'redux/slicers/location.slice'
-
+import { URL } from 'constants/urlApi'
 function* getCityListSaga(action) {
   try {
-    const result = yield axios.get('http://localhost:4000/cities')
+    const result = yield axios.get(`${URL.API}/cities`)
     yield put(getCityListSuccess({ data: result.data }))
   } catch (e) {
     yield put(getCityListFailure({ error: 'Lỗi' }))
@@ -25,7 +25,7 @@ function* getCityListSaga(action) {
 function* getDistrictListSaga(action) {
   try {
     const { cityCode } = action.payload
-    const result = yield axios.get('http://localhost:4000/districts', {
+    const result = yield axios.get(`${URL.API}districts`, {
       params: {
         parentcode: cityCode,
       },
@@ -39,7 +39,7 @@ function* getDistrictListSaga(action) {
 function* getWardListSaga(action) {
   try {
     const { districtCode } = action.payload
-    const result = yield axios.get('http://localhost:4000/wards', {
+    const result = yield axios.get(`${URL.API}wards`, {
       params: {
         parentcode: districtCode,
       },
