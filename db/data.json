@@ -2,20 +2,29 @@
   "users": [
     {
       "email": "thanh@gmail.com",
-      "password": "$2a$10$gcvpEM67EwzG6n0bVRKr9.W5iRltX20cmX12ORE06xFwAiMJDg9sS",
+      "password": "$2a$10$otlIK0tekEjLJcSauo07c.yqaPBqO.cvRilfAcB/lmjDCigE3NN2C",
       "fullName": "Thành Đặng",
       "createdAt": 1690803994232,
-      "updatedAt": 1690803994233,
+      "updatedAt": 1691675048820,
       "id": 1
     },
     {
       "email": "han@gmail.com",
-      "password": "$2a$10$Ui.Y1FyUSDSEhF0uE3cVQend3hMY3Y9Y4lcZkkKqSuNui6V4SUL7O",
+      "password": "$2a$10$bmZ2fjmk6EfwucLdiuCtK.0vpEP18IY8hi4bZVT6IVbB/u4ryUAK.",
       "fullName": "Gia Hân",
       "phoneNumber": "0905258165",
       "createdAt": 1690946647254,
-      "updatedAt": 1690946647255,
+      "updatedAt": 1691668514422,
       "id": 2
+    },
+    {
+      "email": "anhthu@gmail.com",
+      "password": "$2a$10$0cITbKOPyvwuJ9IQP3P40OKpxk6bMiPamCEX7zr9SOVeScDRbLirm",
+      "fullName": "Thành",
+      "phoneNumber": "0935161910123",
+      "createdAt": 1691728722015,
+      "updatedAt": 1691755182136,
+      "id": 3
     }
   ],
   "products": [
@@ -160,9 +169,67 @@
       "createdAt": 1690858693964,
       "updatedAt": 1690858693964,
       "id": 3
+    },
+    {
+      "rate": 5,
+      "comment": "Ngon",
+      "userId": 2,
+      "productId": 1,
+      "createdAt": 1691496211669,
+      "updatedAt": 1691496211669,
+      "id": 4
+    },
+    {
+      "rate": 4,
+      "comment": ":)",
+      "userId": 2,
+      "productId": 7,
+      "createdAt": 1691508522959,
+      "updatedAt": 1691508522959,
+      "id": 5
+    },
+    {
+      "rate": 5,
+      "comment": "123123213",
+      "userId": 3,
+      "productId": 1,
+      "createdAt": 1691755840853,
+      "updatedAt": 1691755840853,
+      "id": 6
+    },
+    {
+      "rate": 4,
+      "comment": "Ngon",
+      "userId": 3,
+      "productId": 8,
+      "createdAt": 1691917219582,
+      "updatedAt": 1691917219582,
+      "id": 7
     }
   ],
-  "favorites": [],
+  "favorites": [
+    {
+      "productId": 3,
+      "userId": 3,
+      "createdAt": 1691745468284,
+      "updatedAt": 1691745468284,
+      "id": 1
+    },
+    {
+      "productId": 1,
+      "userId": 3,
+      "createdAt": 1691753457429,
+      "updatedAt": 1691753457429,
+      "id": 2
+    },
+    {
+      "productId": 8,
+      "userId": 3,
+      "createdAt": 1691917226384,
+      "updatedAt": 1691917226384,
+      "id": 3
+    }
+  ],
   "orders": [
     {
       "fullName": "Gia Hân",
@@ -258,6 +325,102 @@
       "createdAt": 1690969477315,
       "updatedAt": 1690969477315,
       "id": 5
+    },
+    {
+      "fullName": "Thành Đặng",
+      "email": "thanh@gmail.com",
+      "phoneNumber": "0935161910",
+      "pay": "cod",
+      "cityCode": "48",
+      "districtCode": "494",
+      "wardCode": "20287",
+      "address": "K231/17 Nguyễn Công Trứ",
+      "cityName": "Thành phố Đà Nẵng",
+      "districtName": "Quận Ngũ Hành Sơn",
+      "wardName": "Phường Hoà Quý",
+      "userId": 1,
+      "totalPrice": 795000,
+      "status": "pending",
+      "createdAt": 1691509407317,
+      "updatedAt": 1691509407317,
+      "id": 6
+    },
+    {
+      "fullName": "Thành Đặng",
+      "email": "thanh@gmail.com",
+      "phoneNumber": "0905285165",
+      "pay": "cod",
+      "cityCode": "79",
+      "districtCode": "760",
+      "wardCode": "26746",
+      "address": "123ãzczxc",
+      "cityName": "Thành phố Hồ Chí Minh",
+      "districtName": "Quận 1",
+      "wardName": "Phường Nguyễn Thái Bình",
+      "userId": 1,
+      "totalPrice": 795000,
+      "status": "pending",
+      "createdAt": 1691509585532,
+      "updatedAt": 1691509585532,
+      "id": 7
+    },
+    {
+      "fullName": "Thành Đặng",
+      "email": "thanh@gmail.com",
+      "phoneNumber": "0935161910",
+      "pay": "cod",
+      "cityCode": "48",
+      "districtCode": "497",
+      "wardCode": "20293",
+      "address": "K231/17 Nguyễn Công Trứ",
+      "cityName": "Thành phố Đà Nẵng",
+      "districtName": "Huyện Hòa Vang",
+      "wardName": "Xã Hòa Bắc",
+      "userId": 1,
+      "totalPrice": 654000,
+      "status": "pending",
+      "createdAt": 1691663229332,
+      "updatedAt": 1691663229333,
+      "id": 8
+    },
+    {
+      "fullName": "Gia Hân",
+      "email": "han@gmail.com",
+      "phoneNumber": "0905258165",
+      "pay": "cod",
+      "cityCode": "48",
+      "districtCode": "494",
+      "wardCode": "20290",
+      "address": "460 Trần Đại Nghĩa",
+      "cityName": "Thành phố Đà Nẵng",
+      "districtName": "Quận Ngũ Hành Sơn",
+      "wardName": "Phường Hoà Hải",
+      "userId": 2,
+      "totalPrice": 100000,
+      "status": "pending",
+      "createdAt": 1691668260975,
+      "updatedAt": 1691668260975,
+      "id": 9
+    },
+    {
+      "fullName": "Chippy",
+      "email": "anhthu@gmail.com",
+      "phoneNumber": "0935161910",
+      "pay": "cod",
+      "cityCode": "48",
+      "districtCode": "490",
+      "wardCode": "20197",
+      "address": "193 Nguyễn Lương Bằng",
+      "prefix": "84",
+      "cityName": "Thành phố Đà Nẵng",
+      "districtName": "Quận Liên Chiểu",
+      "wardName": "Phường Hòa Khánh Bắc",
+      "userId": 3,
+      "totalPrice": 340000,
+      "status": "pending",
+      "createdAt": 1691750702494,
+      "updatedAt": 1691750702494,
+      "id": 10
     }
   ],
   "orderDetails": [
@@ -444,6 +607,266 @@
       "createdAt": 1690969477432,
       "updatedAt": 1690969477432,
       "id": 20
+    },
+    {
+      "orderId": 6,
+      "name": "Bánh Trứng Tik-Tok Sầu Riêng (120g)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0052220050029.png",
+      "price": 80000,
+      "quantity": 1,
+      "createdAt": 1691509407355,
+      "updatedAt": 1691509407355,
+      "id": 21
+    },
+    {
+      "orderId": 6,
+      "name": "Bánh Bơ Trứng Richy (270g/Hộp)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/2502200220200.png",
+      "price": 70000,
+      "quantity": 1,
+      "createdAt": 1691509407382,
+      "updatedAt": 1691509407382,
+      "id": 22
+    },
+    {
+      "orderId": 6,
+      "name": "Bánh Yến Mạch + gạo lức Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/2555450274082.png",
+      "price": 40000,
+      "quantity": 10,
+      "createdAt": 1691509407415,
+      "updatedAt": 1691509407415,
+      "id": 23
+    },
+    {
+      "orderId": 6,
+      "name": "Bánh Yến Mạch + mè đen Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0750302050200.png",
+      "price": 35000,
+      "quantity": 7,
+      "createdAt": 1691509407430,
+      "updatedAt": 1691509407430,
+      "id": 24
+    },
+    {
+      "orderId": 7,
+      "name": "Bánh Trứng Tik-Tok Sầu Riêng (120g)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0052220050029.png",
+      "price": 80000,
+      "quantity": 1,
+      "createdAt": 1691509585569,
+      "updatedAt": 1691509585569,
+      "id": 25
+    },
+    {
+      "orderId": 7,
+      "name": "Bánh Bơ Trứng Richy (270g/Hộp)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/2502200220200.png",
+      "price": 70000,
+      "quantity": 1,
+      "createdAt": 1691509585587,
+      "updatedAt": 1691509585587,
+      "id": 26
+    },
+    {
+      "orderId": 7,
+      "name": "Bánh Yến Mạch + gạo lức Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/2555450274082.png",
+      "price": 40000,
+      "quantity": 10,
+      "createdAt": 1691509585618,
+      "updatedAt": 1691509585618,
+      "id": 27
+    },
+    {
+      "orderId": 7,
+      "name": "Bánh Yến Mạch + mè đen Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0750302050200.png",
+      "price": 35000,
+      "quantity": 7,
+      "createdAt": 1691509585635,
+      "updatedAt": 1691509585635,
+      "id": 28
+    },
+    {
+      "orderId": 8,
+      "name": "Bánh xốp Fullo Vani Sữa (Fullo Stick Wafer Vanilla Milk)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/7373392361004.png",
+      "price": 5000,
+      "quantity": 1,
+      "createdAt": 1691663229358,
+      "updatedAt": 1691663229358,
+      "id": 29
+    },
+    {
+      "orderId": 8,
+      "name": "Bánh quy trứng muối Đài Loan 180gr",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/2220027202222.png",
+      "price": 199000,
+      "quantity": 1,
+      "createdAt": 1691663229378,
+      "updatedAt": 1691663229378,
+      "id": 30
+    },
+    {
+      "orderId": 8,
+      "name": "Bánh Cracker AFC Kinh Đô Vị Phô Mai (8 Gói x 25g)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0702024200243.png",
+      "price": 25000,
+      "quantity": 1,
+      "createdAt": 1691663229398,
+      "updatedAt": 1691663229398,
+      "id": 31
+    },
+    {
+      "orderId": 8,
+      "name": "Bánh Trứng Tik-Tok Sầu Riêng (120g)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0052220050029.png",
+      "price": 80000,
+      "quantity": 1,
+      "createdAt": 1691663229415,
+      "updatedAt": 1691663229415,
+      "id": 32
+    },
+    {
+      "orderId": 8,
+      "name": "Hộp 10 Gói Bánh Kinh Đô Mini Oreo Vị Chocolate (230g)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/7137775075000.png",
+      "price": 50000,
+      "quantity": 1,
+      "createdAt": 1691663229431,
+      "updatedAt": 1691663229431,
+      "id": 33
+    },
+    {
+      "orderId": 8,
+      "name": "Sandwich",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/3225226156152.png",
+      "price": 35000,
+      "quantity": 1,
+      "createdAt": 1691663229447,
+      "updatedAt": 1691663229447,
+      "id": 34
+    },
+    {
+      "orderId": 8,
+      "name": "Bánh gấu chùm ngây (nhân kem) Morice - Thơm ngon bổ dưỡng (200g)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/2007010100423.png",
+      "price": 40000,
+      "quantity": 1,
+      "createdAt": 1691663229479,
+      "updatedAt": 1691663229479,
+      "id": 35
+    },
+    {
+      "orderId": 8,
+      "name": "Bánh Bơ Trứng Richy (270g/Hộp)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/2502200220200.png",
+      "price": 70000,
+      "quantity": 1,
+      "createdAt": 1691663229498,
+      "updatedAt": 1691663229498,
+      "id": 36
+    },
+    {
+      "orderId": 8,
+      "name": "Bánh gạo vị ngọt dịu One-One gói 150g",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0200615262088.png",
+      "price": 25000,
+      "quantity": 2,
+      "createdAt": 1691663229515,
+      "updatedAt": 1691663229515,
+      "id": 37
+    },
+    {
+      "orderId": 8,
+      "name": "Bánh sữa Long Thành Lothamilk - Vị ngon từ sữa bò tươi (140g)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/8273051322350.png",
+      "price": 50000,
+      "quantity": 2,
+      "createdAt": 1691663229530,
+      "updatedAt": 1691663229530,
+      "id": 38
+    },
+    {
+      "orderId": 9,
+      "name": "Bánh Yến Mạch + gạo lức Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/2555450274082.png",
+      "price": 40000,
+      "quantity": 1,
+      "createdAt": 1691668261064,
+      "updatedAt": 1691668261064,
+      "id": 39
+    },
+    {
+      "orderId": 9,
+      "name": "Bánh Yến Mạch + mè đen Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0750302050200.png",
+      "price": 35000,
+      "quantity": 1,
+      "createdAt": 1691668261134,
+      "updatedAt": 1691668261134,
+      "id": 40
+    },
+    {
+      "orderId": 9,
+      "name": "Bánh gạo vị ngọt dịu One-One gói 150g",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0200615262088.png",
+      "price": 25000,
+      "quantity": 1,
+      "createdAt": 1691668261329,
+      "updatedAt": 1691668261329,
+      "id": 41
+    },
+    {
+      "orderId": 10,
+      "name": "Bánh gạo vị ngọt dịu One-One gói 150g",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0200615262088.png",
+      "price": 25000,
+      "quantity": 2,
+      "createdAt": 1691750702530,
+      "updatedAt": 1691750702530,
+      "id": 42
+    },
+    {
+      "orderId": 10,
+      "name": "Bánh gấu chùm ngây (nhân kem) Morice - Thơm ngon bổ dưỡng (200g)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/2007010100423.png",
+      "price": 40000,
+      "quantity": 1,
+      "createdAt": 1691750702553,
+      "updatedAt": 1691750702553,
+      "id": 43
+    },
+    {
+      "orderId": 10,
+      "name": "Hộp 10 Gói Bánh Kinh Đô Mini Oreo Vị Chocolate (230g)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/7137775075000.png",
+      "price": 50000,
+      "quantity": 1,
+      "createdAt": 1691750702585,
+      "updatedAt": 1691750702585,
+      "id": 44
+    },
+    {
+      "orderId": 10,
+      "name": "Bánh Trứng Tik-Tok Sầu Riêng (120g)",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/0052220050029.png",
+      "price": 80000,
+      "quantity": 1,
+      "createdAt": 1691750702601,
+      "updatedAt": 1691750702601,
+      "id": 45
+    },
+    {
+      "orderId": 10,
+      "name": "Bánh Yến Mạch + gạo lức Fine - Dành Cho Người Ăn Kiêng, Tiểu Đường",
+      "image": "https://hinhanh.webvua.com/images/item/4807/resize/2555450274082.png",
+      "price": 40000,
+      "quantity": 3,
+      "createdAt": 1691750702630,
+      "updatedAt": 1691750702630,
+      "id": 46
     }
   ],
   "cities": [

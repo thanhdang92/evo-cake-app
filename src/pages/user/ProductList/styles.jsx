@@ -1,16 +1,19 @@
 import styled from 'styled-components'
 
-export const ProductListPageWrapper = styled.div``
+export const ProductListPageWrapper = styled.div`
+  background-color: #ebebeb;
+`
 
 export const Container = styled.div`
   width: 85%;
-  margin: 30px auto;
+  margin: 0 auto;
 `
 
 export const CategoryWrapper = styled.div`
   border: 1px solid #333;
   padding: 20px;
   margin: 0 30px;
+  background-color: #fff;
 `
 export const CategoryTitle = styled.div`
   font-size: 20px;
@@ -31,121 +34,104 @@ export const CategoryList = styled.div`
   flex-direction: column;
 `
 
-export const ProductItem = styled.div`
-  cursor: pointer;
-  margin: 30px 0;
-  border: 1px solid #333;
-  border-radius: 10px;
-  padding-bottom: 100px;
-  box-shadow: 5px 5px 10px #ccc;
-  transition: transform 1s ease;
-  overflow: hidden;
-  &:hover {
-    transform: scale(1.1);
-  }
-`
 export const ProductWrapper = styled.div`
-  position: relative;
-`
-
-export const ProductImage = styled.div`
-  text-align: center;
-  & img {
-    width: 70%;
-  }
-`
-
-export const ProductInfo = styled.span`
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  padding: 10px;
-  color: #fff;
-  text-align: center;
-  opacity: 1;
-  transition: all 0.4s ease;
-
-  ${ProductItem}:hover & {
+  margin-top: 50px;
+  img {
+    position: relative;
+    transition: opacity 0.5s ease;
+  }
+  &:hover img {
+    opacity: 0.4;
+  }
+  .addtocart-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-40%, -50%);
     opacity: 0;
-    transform: translate(0, -50%);
-    transition-delay: 0.15s;
+    transition: opacity 1.5s ease;
+  }
+  &:hover .addtocart-button {
+    opacity: 1;
   }
 `
-export const ProductName = styled.div`
+export const AddToCartBtn = styled.div`
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 30px;
+  text-align: center;
+  background-color: #ddac52;
   color: #333;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.8s ease;
+  &:hover {
+    background-color: #674505;
+    color: #fff;
+  }
+`
+export const ShowProduct = styled.div`
+  width: 100%;
+  background-color: #ccc;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #333;
+  background-color: #ddac52;
+  transition: all 0.8s ease;
+
+  &:hover {
+    color: #fff;
+    background-color: #674505;
+  }
+`
+
+export const ProductItem = styled.div``
+export const ProductItemName = styled.div`
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  font-weight: 500;
-`
-export const ProductPrice = styled.div`
-  color: #ddac52;
-  margin-top: 20px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
+  text-align: center;
 `
 
-export const AddToCartButton = styled.div`
-  position: absolute;
-  top: 20px;
-  left: 30px;
-  width: 85%;
-  color: #333;
+export const ProductItemPrice = styled.div`
+  font-size: 20px;
+  font-weight: 600;
   text-align: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s ease;
-  ${ProductItem}:hover & {
-    transition-delay: 0.15s;
-    visibility: visible;
-    opacity: 1;
-    transform: translate(0, -50%);
-  }
+  color: #ddac52;
+  margin: 10px 0;
 `
-export const ShowProductButton = styled.div`
-  width: 100%;
+export const ProductRate = styled.div`
+  text-align: center;
+`
+export const AddToCardButton = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ddac52;
   button {
-    display: inline-block;
-    height: 50px;
-    width: 100%;
-    padding: 10px 20px;
-    outline: none;
-    text-transform: uppercase;
-    border-radius: 40px;
-    background-color: #7f462c;
-    color: #fff;
-    font-size: 12px;
-    text-align: center;
-    font-weight: 600;
-    transition: all 0.4s ease;
-  }
-  &:hover button {
-    color: #fff !important;
-    background-color: #ddac55;
-  }
-`
-export const IconCart = styled.div`
-  & button {
-    display: inline-block;
-    margin-right: 0px;
-    height: 50px;
-    width: 50px;
-    color: #000;
-    border-radius: 50%;
-    font-weight: 900;
-    vertical-align: top;
-    background-color: #f5f5f5;
-    text-align: center;
-    padding: 0;
-    position: relative;
-    margin-left: 7px;
     font-size: 20px;
   }
-  &:hover button {
-    background-color: #ddac55 !important;
-    & span {
-      color: #333;
-    }
+
+  &:hover {
+    background-color: #7e5200;
+    color: #fff;
   }
+`
+
+export const BreadcrumbContainer = styled.div`
+  border-bottom: 1px solid #333;
+  padding: 20px 0 10px 30px;
+  margin: 0 0 30px 30px;
 `

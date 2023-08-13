@@ -1,14 +1,32 @@
 import { Col, Row, Form, Input, Button } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 import * as S from './styles'
 import { ROUTES } from 'constants/routes'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginRequest } from 'redux/slicers/auth.slice'
+import { useEffect } from 'react'
 const LoginPage = () => {
+  const [loginForm] = Form.useForm()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { loginData } = useSelector((state) => state.auth)
+  const accessToken = localStorage.getItem('accessToken')
+  useEffect(() => {
+    if (loginData.error) {
+      loginForm.setFields([
+        {
+          name: 'email',
+          errors: [' '],
+        },
+        {
+          name: 'password',
+          errors: [loginData.error],
+        },
+      ])
+    }
+  }, [loginData.error])
   const handleSubmitLogin = (values) => {
     dispatch(
       loginRequest({
@@ -17,6 +35,8 @@ const LoginPage = () => {
       })
     )
   }
+
+  if (accessToken) return <Navigate to={ROUTES.USER.PRODUCT_LIST} />
   return (
     <S.LoginPageWrapper>
       <S.Container>
@@ -24,6 +44,7 @@ const LoginPage = () => {
           <Col span={24}>
             <S.Title>Đăng nhập</S.Title>
             <Form
+              form={loginForm}
               name="normal_login"
               onFinish={(values) => handleSubmitLogin(values)}
             >

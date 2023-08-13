@@ -1,5 +1,5 @@
 import { Col, Row, Form, Input, Button } from 'antd'
-import { LockOutlined, UserOutlined } from '@ant-design/icons'
+import { LockOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons'
 import { Link, useNavigate } from 'react-router-dom'
 import * as S from './styles'
 import { ROUTES } from 'constants/routes'
@@ -27,6 +27,7 @@ const RegisterPage = () => {
       ])
     }
   }, [registerData.error])
+
   const handleSubmit = (values) => {
     dispatch(
       registerRequest({
@@ -62,7 +63,7 @@ const RegisterPage = () => {
                   },
                 ]}
               >
-                <Input />
+                <Input placeholder="Họ và tên" />
               </Form.Item>
               <Form.Item
                 name="email"
@@ -78,15 +79,15 @@ const RegisterPage = () => {
                   },
                 ]}
               >
-                <Input />
+                <Input placeholder="E-mail" />
               </Form.Item>
               <Form.Item
                 name="password"
-                label="Password"
+                label="Mật khẩu"
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your password!',
+                    message: 'Vui lòng nhập mật khẩu!',
                   },
                 ]}
                 hasFeedback
@@ -99,13 +100,13 @@ const RegisterPage = () => {
               </Form.Item>
               <Form.Item
                 name="confirm"
-                label="Confirm Password"
+                label="Xác nhận mật khẩu"
                 dependencies={['password']}
                 hasFeedback
                 rules={[
                   {
                     required: true,
-                    message: 'Please confirm your password!',
+                    message: 'Vui lòng xác nhận mật khẩu!',
                   },
                   ({ getFieldValue }) => ({
                     validator(_, value) {
@@ -113,9 +114,7 @@ const RegisterPage = () => {
                         return Promise.resolve()
                       }
                       return Promise.reject(
-                        new Error(
-                          'The new password that you entered do not match!'
-                        )
+                        new Error('Xác nhận mật khẩu không trùng khớp!')
                       )
                     },
                   }),
@@ -137,7 +136,7 @@ const RegisterPage = () => {
                   },
                 ]}
               >
-                <Input />
+                <Input prefix={<PhoneOutlined />} placeholder="Số điện thoại" />
               </Form.Item>
               <Form.Item>
                 <Row justify="center">

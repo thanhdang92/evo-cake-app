@@ -6,6 +6,8 @@ export const Container = styled.div`
   margin: 100px auto;
   padding: 50px;
   border: 1px solid #333;
+  background-image: linear-gradient(to right, #f6e6ba, #ddac52);
+  border-radius: 20px;
 `
 export const FormLogin = styled.div``
 

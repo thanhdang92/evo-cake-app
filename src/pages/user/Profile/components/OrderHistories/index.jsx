@@ -10,10 +10,6 @@ const OrderHistories = () => {
 
   const { userInfo } = useSelector((state) => state.auth)
   const { orderList } = useSelector((state) => state.order)
-  console.log(
-    '🚀 ~ file: index.jsx:13 ~ OrderHistories ~ orderList:',
-    orderList.data
-  )
   const productOrder = orderList.data.map((item) => item.orderDetails)
   console.log('productOrder', productOrder)
   useEffect(() => {
@@ -75,7 +71,9 @@ const OrderHistories = () => {
       dataIndex: 'orderDetails',
       key: 'orderDetails',
       width: '20%',
-      render: (_, item) => `${item.quantity}`,
+      render: (_, item) => (
+        <div style={{ textAlign: 'center' }}>{item.quantity}</div>
+      ),
     },
     {
       title: 'Thành tiền',
@@ -95,18 +93,6 @@ const OrderHistories = () => {
           pagination={false}
           expandable={{
             expandedRowRender: (record) => (
-              // <Row>
-              //   {record.orderDetails.map((item) => (
-              //     <Col lg={24} key={item.id}>
-              //       <Row>
-              //         <Col lg={4}>{item.name}</Col>
-              //         <Col lg={8}>{item.price}</Col>
-              //         <Col lg={6}>{item.quantity}</Col>
-              //         <Col lg={6}>{item.price * item.quantity}</Col>
-              //       </Row>
-              //     </Col>
-              //   ))}
-              // </Row>
               <Table
                 columns={tableProductColumns}
                 dataSource={record.orderDetails}

@@ -1,11 +1,16 @@
 import styled from 'styled-components'
 
-export const ProductDetailPageWrapper = styled.div``
+export const ProductDetailPageWrapper = styled.div`
+  background-color: #ebebeb;
+`
 export const Container = styled.div`
   width: 85%;
-  margin: 30px auto;
+  margin: 0 auto;
 `
-
+export const ProductDetailWrapper = styled.div`
+  background-color: #fff;
+  padding: 40px;
+`
 export const ProductDetailImg = styled.div`
   border: 1px solid #333;
   padding: 20px;
@@ -13,7 +18,9 @@ export const ProductDetailImg = styled.div`
     width: 100%;
   }
 `
-
+export const ProductContent = styled.div`
+  margin: 0 20px;
+`
 export const ProductDetailTitle = styled.div`
   font-size: 25px;
   font-weight: 600;
@@ -54,7 +61,7 @@ export const AddToCartButton = styled.div`
     }
   }
 `
-
+export const FavoriteButton = styled.div``
 export const Description = styled.div`
   padding: 30px 0;
 `
@@ -265,4 +272,11 @@ export const IconCart = styled.div`
       color: #333;
     }
   }
+`
+
+export const BreadcrumbContainer = styled.div`
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+  padding-top: 30px;
+  margin-bottom: 20px;
 `

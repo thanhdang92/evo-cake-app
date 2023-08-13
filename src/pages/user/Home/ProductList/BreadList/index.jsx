@@ -4,6 +4,8 @@ import * as S from './styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { useMemo } from 'react'
 import { addToCartRequest } from 'redux/slicers/cart.slice'
+import { Link, generatePath } from 'react-router-dom'
+import { ROUTES } from 'constants/routes'
 
 const BreadList = () => {
   const dispatch = useDispatch()
@@ -52,7 +54,13 @@ const BreadList = () => {
                 <Row justify="space-between" align="middle">
                   <Col lg={18}>
                     <S.ShowProductButton>
-                      <Button>Xem thêm</Button>
+                      <Link
+                        to={generatePath(ROUTES.USER.PRODUCT_DETAIL, {
+                          id: item.id,
+                        })}
+                      >
+                        <Button>Xem thêm</Button>
+                      </Link>
                     </S.ShowProductButton>
                   </Col>
                   <Col lg={6}>

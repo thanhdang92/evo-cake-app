@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { ConfigProvider } from 'antd'
 import 'moment/locale/vi'
-
+import vn from 'antd/locale/vi_VN'
 import App from './App'
 import { store } from './store'
 import reportWebVitals from './reportWebVitals'
@@ -15,6 +15,7 @@ root.render(
   <BrowserRouter>
     <Provider store={store}>
       <ConfigProvider
+        locale={vn}
         theme={{
           token: {
             colorPrimary: '#faad14',

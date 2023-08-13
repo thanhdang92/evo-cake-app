@@ -6,6 +6,7 @@ export const Container = styled.div`
   width: 85%;
   margin: 0 auto;
   border: 1px solid #ccc;
+  padding: 50px;
   button {
     border-radius: 5px;
     height: 50px;
@@ -17,7 +18,13 @@ export const Container = styled.div`
     }
   }
 `
-export const CheckoutPageTitle = styled.div``
+export const CheckoutPageTitle = styled.div`
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 20px 0;
+`
 
 export const CheckoutPageCart = styled.div`
   width: 100%;

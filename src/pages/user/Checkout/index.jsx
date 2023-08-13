@@ -10,6 +10,8 @@ import {
 } from 'redux/slicers/location.slice'
 import { orderProductRequest } from 'redux/slicers/order.slice'
 import { ROUTES } from 'constants/routes'
+
+import { addToCartRequest, clearCartRequest } from 'redux/slicers/cart.slice'
 const CheckoutPage = () => {
   const [checkoutForm] = Form.useForm()
   const [totalPrice, setTotalPrice] = useState(0)
@@ -25,6 +27,10 @@ const CheckoutPage = () => {
     email: userInfo.data.email,
     phoneNumber: userInfo.data.phoneNumber,
   }
+  console.log(
+    '🚀 ~ file: index.jsx:30 ~ CheckoutPage ~ initialValues:',
+    initialValues
+  )
   const tableColumn = [
     {
       title: 'Tên sản phẩm',
@@ -32,7 +38,7 @@ const CheckoutPage = () => {
       key: 'name',
       width: '60%',
       render: (_, item) => (
-        <S.CheckoutPageCart key={item.id}>
+        <S.CheckoutPageCart>
           <Row gutter={10} align="middle">
             <Col lg={6} md={8} xs={24}>
               <img src={item.image} />
@@ -50,7 +56,7 @@ const CheckoutPage = () => {
       key: 'quantity',
       width: '5%',
       render: (_, item) => (
-        <Row key={item.id} style={{ fontWeight: 500 }} justify="center">
+        <Row style={{ fontWeight: 500 }} justify="center">
           {item.quantity}
         </Row>
       ),
@@ -60,13 +66,23 @@ const CheckoutPage = () => {
       dataIndex: 'total',
       key: 'total',
       render: (_, item) => (
-        <Row key={item.id} style={{ color: 'red', fontWeight: 500 }}>
+        <Row style={{ color: 'red', fontWeight: 500 }}>
           {(item.price * item.quantity).toLocaleString()} VND
         </Row>
       ),
     },
   ]
-
+  const prefixSelector = (
+    <Form.Item name="prefix" noStyle>
+      <Select
+        style={{
+          width: 70,
+        }}
+      >
+        <Select.Option value="84">+84</Select.Option>
+      </Select>
+    </Form.Item>
+  )
   useEffect(() => {
     dispatch(getCityListRequest())
     setTotalPrice(
@@ -104,6 +120,7 @@ const CheckoutPage = () => {
         callback: () => navigate(ROUTES.USER.HOME),
       })
     )
+    dispatch(clearCartRequest())
   }
 
   const renderCityOptions = useMemo(() => {
@@ -139,7 +156,6 @@ const CheckoutPage = () => {
     <S.CheckoutPageWrapper>
       <S.Container>
         <S.CheckoutPageTitle>Thông tin thanh toán</S.CheckoutPageTitle>
-
         <Row style={{ padding: 30 }} gutter={[20, 16]}>
           <Col lg={10} md={24} xs={24}>
             <Card size="small" title="Giỏ hàng" style={{ marginBottom: 24 }}>
@@ -194,9 +210,10 @@ const CheckoutPage = () => {
                   >
                     <Input />
                   </Form.Item>
+
                   <Form.Item
-                    label="Số điện thoại"
                     name="phoneNumber"
+                    label="Số điện thoại"
                     rules={[
                       {
                         required: true,
@@ -204,7 +221,12 @@ const CheckoutPage = () => {
                       },
                     ]}
                   >
-                    <Input />
+                    <Input
+                      addonBefore={prefixSelector}
+                      style={{
+                        width: '100%',
+                      }}
+                    />
                   </Form.Item>
                   <Form.Item
                     label="Hình thức thanh toán"

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   userInfo: {
     data: {},
-    loading: false,
+    loading: true,
     error: null,
   },
   loginData: {
@@ -13,6 +13,14 @@ const initialState = {
   registerData: {
     loading: false,
     error: null,
+  },
+  updateUserInfoData: {
+    load: false,
+    error: '',
+  },
+  changePasswordData: {
+    load: false,
+    error: '',
   },
 }
 
@@ -68,6 +76,36 @@ export const authSlice = createSlice({
       state.userInfo.loading = false
       state.userInfo.error = error
     },
+    // updateUserInfo
+    updateUserInfoRequest: (state, action) => {
+      state.updateUserInfoData.loading = true
+      state.updateUserInfoData.error = null
+    },
+    updateUserInfoSuccess: (state, action) => {
+      const { data } = action.payload
+      state.updateUserInfoData.data = data
+      state.updateUserInfoData.loading = false
+    },
+    updateUserInfoFailure: (state, action) => {
+      const { error } = action.payload
+      state.updateUserInfoData.loading = false
+      state.updateUserInfoData.error = error
+    },
+    // changePassword
+    changePasswordRequest: (state, action) => {
+      state.changePasswordData.loading = true
+      state.changePasswordData.error = null
+    },
+    changePasswordSuccess: (state, action) => {
+      const { data } = action.payload
+      state.changePasswordData.data = data
+      state.changePasswordData.loading = false
+    },
+    changePasswordFailure: (state, action) => {
+      const { error } = action.payload
+      state.changePasswordData.loading = false
+      state.changePasswordData.error = error
+    },
   },
 })
 
@@ -82,6 +120,12 @@ export const {
   getUserInfoRequest,
   getUserInfoSuccess,
   getUserInfoFailure,
+  updateUserInfoRequest,
+  updateUserInfoSuccess,
+  updateUserInfoFailure,
+  changePasswordRequest,
+  changePasswordSuccess,
+  changePasswordFailure,
 } = authSlice.actions
 
 export default authSlice.reducer

@@ -16,6 +16,7 @@ import { getUserInfoRequest } from 'redux/slicers/auth.slice'
 import { Result, Button, Breadcrumb } from 'antd'
 import CheckoutPage from 'pages/user/Checkout'
 import ProfilePage from 'pages/user/Profile'
+import ContactPage from 'pages/Contact'
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -48,6 +49,7 @@ function App() {
           <Route path={ROUTES.USER.CART} element={<CartPage />}></Route>
           <Route path={ROUTES.USER.CHECKOUT} element={<CheckoutPage />}></Route>
           <Route path={ROUTES.USER.PROFILE} element={<ProfilePage />}></Route>
+          <Route path={ROUTES.CONTACT} element={<ContactPage />}></Route>
         </Route>
         <Route
           path="*"

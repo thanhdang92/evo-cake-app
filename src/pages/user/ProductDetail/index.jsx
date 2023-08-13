@@ -8,15 +8,23 @@ import {
   Modal,
   Form,
   notification,
+  Breadcrumb,
+  Space,
 } from 'antd'
 import * as S from './styles'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import TextArea from 'antd/es/input/TextArea'
 import { useForm } from 'antd/es/form/Form'
 import { Link, generatePath, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
-import { ShoppingCartOutlined } from '@ant-design/icons'
+import {
+  HeartFilled,
+  HeartOutlined,
+  HomeOutlined,
+  ShoppingCartOutlined,
+} from '@ant-design/icons'
+import qs from 'qs'
 
 import { ROUTES } from 'constants/routes'
 import { addToCartRequest } from 'redux/slicers/cart.slice'
@@ -28,17 +36,28 @@ import {
   createReviewRequest,
   getReviewListRequest,
 } from 'redux/slicers/review.slice'
+import { updateBreadcrumb } from 'redux/slicers/breadcrumb.slice'
+import { setFilterParams } from 'redux/slicers/common.slice'
+import {
+  favoriteProductRequest,
+  unFavoriteProductRequest,
+} from 'redux/slicers/favorite.slice'
 const ProductDetailPage = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
+  const productDetailRef = useRef()
   const [formReview] = useForm()
   const [quantity, setQuantity] = useState(1)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { productDetail } = useSelector((state) => state.product)
+  console.log(
+    '🚀 ~ file: index.jsx:44 ~ ProductDetailPage ~ productDetail:',
+    productDetail
+  )
   const { productList } = useSelector((state) => state.product)
   const { reviewList } = useSelector((state) => state.review)
   const { userInfo } = useSelector((state) => state.auth)
-
+  const { filterParams } = useSelector((state) => state.common)
   useEffect(() => {
     dispatch(
       getProductDetailRequest({
@@ -46,6 +65,7 @@ const ProductDetailPage = () => {
       })
     )
     dispatch(getReviewListRequest({ productId: parseInt(id) }))
+    productDetailRef.current.scrollIntoView({ behavior: 'smooth' })
   }, [id])
   useEffect(() => {
     if (productDetail.data.categoryId) {
@@ -56,10 +76,43 @@ const ProductDetailPage = () => {
       )
     }
   }, [productDetail.data])
+
+  const isFavorite = useMemo(
+    () =>
+      productDetail.data.favorites?.some(
+        (item) => item.userId === userInfo.data.id
+      ),
+    [productDetail.data.favorites, userInfo.data.id]
+  )
+
   const showModal = () => {
     setIsModalOpen(true)
   }
-
+  const handleToggleFavorite = () => {
+    if (userInfo.data.id) {
+      if (isFavorite) {
+        const favoriteData = productDetail.data.favorites?.find(
+          (item) => item.userId === userInfo.data.id
+        )
+        dispatch(
+          unFavoriteProductRequest({
+            id: favoriteData.id,
+          })
+        )
+      } else {
+        dispatch(
+          favoriteProductRequest({
+            productId: productDetail.data.id,
+            userId: userInfo.data.id,
+          })
+        )
+      }
+    } else {
+      notification.error({
+        message: 'Vui lòng đăng nhập để thực hiện chức năng này!',
+      })
+    }
+  }
   const handleOnchangeQuantity = (value) => {
     setQuantity(value)
     console.log(value)
@@ -79,7 +132,10 @@ const ProductDetailPage = () => {
       })
     )
   }
-  console.log(userInfo.data.id)
+
+  useEffect(() => {
+    if (productDetail.data) dispatch(updateBreadcrumb(productDetail.data.name)) // Thêm "Cart" vào breadcrumb khi vào trang Cart
+  }, [productDetail.data])
   const handleAddToCart = () => {
     dispatch(
       addToCartRequest({
@@ -178,35 +234,111 @@ const ProductDetailPage = () => {
   return (
     <S.ProductDetailPageWrapper>
       <S.Container>
-        <Row gutter={[30, 16]}>
-          <Col lg={10} md={6} xs={24}>
-            <S.ProductDetailImg>
-              <img src={productDetail.data.image} alt="" />
-            </S.ProductDetailImg>
-          </Col>
-          <Col lg={14} md={18} xs={24}>
-            <S.ProductDetailTitle>
-              {productDetail.data.name}
-            </S.ProductDetailTitle>
-            <S.ProductDetailPrice>
-              {productDetail.data.price?.toLocaleString()} VNĐ
-            </S.ProductDetailPrice>
-            <S.ProductDetailDes>
-              {productDetail.data.describe}
-            </S.ProductDetailDes>
-            <S.ProductDetailQuantity>
-              <span style={{ marginRight: 20, fontSize: 20 }}>Số Lượng:</span>
-              <InputNumber
-                min={1}
-                value={quantity}
-                onChange={(value) => handleOnchangeQuantity(value)}
-              />
-            </S.ProductDetailQuantity>
-            <S.AddToCartButton>
-              <Button onClick={() => handleAddToCart()}>Thêm vào giỏ</Button>
-            </S.AddToCartButton>
-          </Col>
-        </Row>
+        <S.BreadcrumbContainer ref={productDetailRef}>
+          <Breadcrumb
+            items={[
+              {
+                title: (
+                  <Link to={ROUTES.USER.HOME}>
+                    <Space>
+                      <HomeOutlined />
+                      <span>Trang chủ</span>
+                    </Space>
+                  </Link>
+                ),
+              },
+              {
+                title: (
+                  <Link to={ROUTES.USER.PRODUCT_LIST}>Danh sách sản phẩm</Link>
+                ),
+              },
+              {
+                title: (
+                  <Link
+                    to={{
+                      pathname: ROUTES.USER.PRODUCT_LIST,
+                      search: qs.stringify({
+                        ...filterParams,
+                        categoryId: [productDetail.data.categoryId],
+                      }),
+                    }}
+                  >
+                    {productDetail.data.category?.name}
+                  </Link>
+                ),
+                onClick: () =>
+                  dispatch(
+                    setFilterParams({
+                      ...filterParams,
+                      categoryId: [productDetail.data.categoryId],
+                    })
+                  ),
+              },
+              {
+                title: productDetail.data.name,
+              },
+            ]}
+            style={{ marginBottom: 8 }}
+          />
+        </S.BreadcrumbContainer>
+        <S.ProductDetailWrapper>
+          <Row gutter={[30, 16]}>
+            <Col lg={10} md={6} xs={24}>
+              <S.ProductDetailImg>
+                <img src={productDetail.data.image} alt="" />
+              </S.ProductDetailImg>
+            </Col>
+            <Col lg={14} md={18} xs={24}>
+              <S.ProductContent>
+                <S.ProductDetailTitle>
+                  {productDetail.data.name}
+                </S.ProductDetailTitle>
+                <S.ProductDetailPrice>
+                  {productDetail.data.price?.toLocaleString()} VNĐ
+                </S.ProductDetailPrice>
+                <S.ProductDetailDes>
+                  {productDetail.data.describe}
+                </S.ProductDetailDes>
+                <S.ProductDetailQuantity>
+                  <span style={{ marginRight: 20, fontSize: 20 }}>
+                    Số Lượng:
+                  </span>
+                  <InputNumber
+                    min={1}
+                    value={quantity}
+                    onChange={(value) => handleOnchangeQuantity(value)}
+                  />
+                </S.ProductDetailQuantity>
+                <S.AddToCartButton>
+                  <Button onClick={() => handleAddToCart()}>
+                    Thêm vào giỏ
+                  </Button>
+                </S.AddToCartButton>
+                <S.FavoriteButton>
+                  <Button
+                    size="large"
+                    type="text"
+                    danger={isFavorite}
+                    icon={
+                      isFavorite ? (
+                        <HeartFilled style={{ fontSize: 24 }} />
+                      ) : (
+                        <HeartOutlined
+                          style={{ fontSize: 24, color: '#414141' }}
+                        />
+                      )
+                    }
+                    onClick={() => handleToggleFavorite()}
+                  ></Button>
+                  <span>
+                    {productDetail.data?.favorites?.length || 0} Lượt thích
+                  </span>
+                </S.FavoriteButton>
+              </S.ProductContent>
+            </Col>
+          </Row>
+        </S.ProductDetailWrapper>
+
         <Row>
           <Col span={24}>
             <S.Description>
@@ -317,6 +449,12 @@ const ProductDetailPage = () => {
                           name="rate"
                           label="Chọn số sao đánh giá cho sản phẩm"
                           align="middle"
+                          rules={[
+                            {
+                              required: true,
+                              message: 'Đánh giá sao là bắt buộc',
+                            },
+                          ]}
                         >
                           <Rate value={1} style={{ fontSize: 30 }}></Rate>
                         </Form.Item>
@@ -324,6 +462,12 @@ const ProductDetailPage = () => {
                           name="comment"
                           label="Bình luận sản phẩm"
                           align="middle"
+                          rules={[
+                            {
+                              required: true,
+                              message: 'Nhận xét sản phẩm là bắt buộc',
+                            },
+                          ]}
                         >
                           <TextArea
                             placeholder="Bình luận sản phẩm"
