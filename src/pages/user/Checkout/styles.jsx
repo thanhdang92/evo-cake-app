@@ -4,7 +4,7 @@ export const CheckoutPageWrapper = styled.div``
 
 export const Container = styled.div`
   width: 85%;
-  margin: 0 auto;
+  margin: 50px auto;
   border: 1px solid #ccc;
   padding: 50px;
   button {

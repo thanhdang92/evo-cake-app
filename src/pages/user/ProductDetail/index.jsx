@@ -215,7 +215,7 @@ const ProductDetailPage = () => {
                       </S.ShowProductButton>
                     </Col>
                     <Col lg={6} md={6} xs={6}>
-                      <S.IconCart>
+                      <S.IconCart onClick={() => handleAddToCart(item)}>
                         <Button type="text">
                           <ShoppingCartOutlined />
                         </Button>
@@ -309,31 +309,35 @@ const ProductDetailPage = () => {
                     onChange={(value) => handleOnchangeQuantity(value)}
                   />
                 </S.ProductDetailQuantity>
-                <S.AddToCartButton>
-                  <Button onClick={() => handleAddToCart()}>
-                    Thêm vào giỏ
-                  </Button>
-                </S.AddToCartButton>
-                <S.FavoriteButton>
-                  <Button
-                    size="large"
-                    type="text"
-                    danger={isFavorite}
-                    icon={
-                      isFavorite ? (
-                        <HeartFilled style={{ fontSize: 24 }} />
-                      ) : (
-                        <HeartOutlined
-                          style={{ fontSize: 24, color: '#414141' }}
-                        />
-                      )
-                    }
-                    onClick={() => handleToggleFavorite()}
-                  ></Button>
-                  <span>
-                    {productDetail.data?.favorites?.length || 0} Lượt thích
-                  </span>
-                </S.FavoriteButton>
+                <Row align="middle">
+                  <S.AddToCartButton>
+                    <Button onClick={() => handleAddToCart()}>
+                      Thêm vào giỏ
+                    </Button>
+                  </S.AddToCartButton>
+                  <S.FavoriteButton>
+                    <Row align="middle">
+                      <Button
+                        size="large"
+                        type="text"
+                        danger={isFavorite}
+                        icon={
+                          isFavorite ? (
+                            <HeartFilled style={{ fontSize: 24 }} />
+                          ) : (
+                            <HeartOutlined
+                              style={{ fontSize: 24, color: '#414141' }}
+                            />
+                          )
+                        }
+                        onClick={() => handleToggleFavorite()}
+                      ></Button>
+                      <span>
+                        {productDetail.data?.favorites?.length || 0} Lượt thích
+                      </span>
+                    </Row>
+                  </S.FavoriteButton>
+                </Row>
               </S.ProductContent>
             </Col>
           </Row>
@@ -367,7 +371,7 @@ const ProductDetailPage = () => {
                       {productRate ? `${productRate}/5` : '0/5'}
                     </li>
                     <li>
-                      <Rate value={productRate} allowHalf></Rate>
+                      <Rate value={productRate} allowHalf disabled></Rate>
                     </li>
                     <li
                       style={{

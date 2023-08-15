@@ -15,7 +15,7 @@ import {
 import { URL } from 'constants/urlApi'
 function* getCityListSaga(action) {
   try {
-    const result = yield axios.get(`${URL.API}/cities`)
+    const result = yield axios.get(`${URL.API}cities`)
     yield put(getCityListSuccess({ data: result.data }))
   } catch (e) {
     yield put(getCityListFailure({ error: 'Lỗi' }))

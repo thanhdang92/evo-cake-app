@@ -24,3 +24,7 @@ export const CheckOutBtn = styled.button`
     color: #fff;
   }
 `
+export const CartEmpty = styled.div`
+  border: 1px solid #ddd;
+  padding: 30px;
+`

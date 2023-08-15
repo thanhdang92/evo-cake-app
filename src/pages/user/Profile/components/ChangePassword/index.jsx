@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Form, Input, message, notification } from 'antd'
+import { Button, Col, Form, Input, Row, message, notification } from 'antd'
 
 import { changePasswordRequest, logoutRequest } from 'redux/slicers/auth.slice'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from 'constants/routes'
-
+import * as S from './styles'
 function ChangePassword() {
   const navigate = useNavigate()
   const [changePasswordForm] = Form.useForm()
@@ -44,68 +44,73 @@ function ChangePassword() {
   }
 
   return (
-    <Form
-      form={changePasswordForm}
-      name="changePasswordForm"
-      layout="vertical"
-      onFinish={(values) => handleChangePassword(values)}
-      autoComplete="off"
-    >
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
+    <S.FormChangePass>
+      <h1 style={{ textAlign: 'center', padding: '10px 0' }}>Đổi mật khẩu</h1>
+      <Form
+        form={changePasswordForm}
+        name="changePasswordForm"
+        layout="vertical"
+        onFinish={(values) => handleChangePassword(values)}
+        autoComplete="off"
       >
-        <Input.Password />
-      </Form.Item>
-      <Form.Item
-        label="New password"
-        name="newPassword"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your new password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-      <Form.Item
-        label="Confirm new password"
-        name="confirmNewPassword"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your confirm new password!',
-          },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue('newPassword') === value) {
-                return Promise.resolve()
-              }
-              return Promise.reject(
-                'The two passwords that you entered do not match!'
-              )
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your password!',
             },
-          }),
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-      <Button
-        type="primary"
-        htmlType="submit"
-        block
-        loading={changePasswordData.load}
-      >
-        Submit
-      </Button>
-    </Form>
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item
+          label="New password"
+          name="newPassword"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your new password!',
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item
+          label="Confirm new password"
+          name="confirmNewPassword"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your confirm new password!',
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('newPassword') === value) {
+                  return Promise.resolve()
+                }
+                return Promise.reject(
+                  'The two passwords that you entered do not match!'
+                )
+              },
+            }),
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+        <Row justify="center" align="middle">
+          <Button
+            htmlType="submit"
+            block
+            loading={changePasswordData.load}
+            style={{ width: 200 }}
+          >
+            Xác nhận
+          </Button>
+        </Row>
+      </Form>
+    </S.FormChangePass>
   )
 }
 

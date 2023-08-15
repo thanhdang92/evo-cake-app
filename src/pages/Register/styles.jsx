@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
-export const RegisterPageWrapper = styled.div`
-  padding-bottom: 100px;
-`
+export const RegisterPageWrapper = styled.div``
 
 export const Container = styled.div`
   width: 50%;
@@ -14,7 +12,7 @@ export const Container = styled.div`
 
 export const Title = styled.div`
   text-align: center;
-  padding: 20px;
+  padding: 20px 0;
   font-size: 20px;
   font-weight: 500;
   text-transform: uppercase;

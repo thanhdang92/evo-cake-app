@@ -8,7 +8,7 @@ const About = () => {
         <Row gutter={[16, 16]}>
           <Col lg={12} md={12} xs={24}>
             <img
-              src="https://png.pngtree.com/thumb_back/fh260/background/20230426/pngtree-many-breads-are-sitting-on-a-rack-in-a-dark-bakery-image_2523098.png"
+              src="https://png.pngtree.com/background/20230427/original/pngtree-bakery-with-breads-in-wooden-boxes-picture-image_2493918.jpg"
               alt=""
             />
           </Col>

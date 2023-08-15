@@ -26,11 +26,9 @@ const CheckoutPage = () => {
     fullName: userInfo.data.fullName,
     email: userInfo.data.email,
     phoneNumber: userInfo.data.phoneNumber,
+    prefix: '84',
   }
-  console.log(
-    '🚀 ~ file: index.jsx:30 ~ CheckoutPage ~ initialValues:',
-    initialValues
-  )
+
   const tableColumn = [
     {
       title: 'Tên sản phẩm',

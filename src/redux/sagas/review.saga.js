@@ -9,7 +9,7 @@ import {
   createReviewSuccess,
   createReviewFailure,
 } from 'redux/slicers/review.slice'
-
+import { URL } from 'constants/urlApi'
 function* getReviewListSaga(action) {
   try {
     const { productId } = action.payload

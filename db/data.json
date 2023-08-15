@@ -19,11 +19,11 @@
     },
     {
       "email": "anhthu@gmail.com",
-      "password": "$2a$10$0cITbKOPyvwuJ9IQP3P40OKpxk6bMiPamCEX7zr9SOVeScDRbLirm",
+      "password": "$2a$10$c8kUGGCh.IH.qCjFKlXygOHayGIfzV5Xj4YdX8kDub6yky0iTy7Zi",
       "fullName": "Thành",
-      "phoneNumber": "0935161910123",
+      "phoneNumber": "0935161910",
       "createdAt": 1691728722015,
-      "updatedAt": 1691755182136,
+      "updatedAt": 1692003393623,
       "id": 3
     }
   ],
@@ -205,6 +205,15 @@
       "createdAt": 1691917219582,
       "updatedAt": 1691917219582,
       "id": 7
+    },
+    {
+      "rate": 5,
+      "comment": "NGON",
+      "userId": 3,
+      "productId": 7,
+      "createdAt": 1691998299028,
+      "updatedAt": 1691998299028,
+      "id": 8
     }
   ],
   "favorites": [
@@ -228,6 +237,13 @@
       "createdAt": 1691917226384,
       "updatedAt": 1691917226384,
       "id": 3
+    },
+    {
+      "productId": 2,
+      "userId": 3,
+      "createdAt": 1692010953091,
+      "updatedAt": 1692010953092,
+      "id": 4
     }
   ],
   "orders": [

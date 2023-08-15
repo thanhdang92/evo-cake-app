@@ -1,10 +1,17 @@
-import { Badge, Col, Dropdown, Row, Space } from 'antd'
+import { Badge, Button, Col, Drawer, Dropdown, Menu, Row, Space } from 'antd'
 import * as S from './styles'
 import {
+  AlignLeftOutlined,
+  AppstoreOutlined,
+  BookOutlined,
+  DownOutlined,
   FacebookOutlined,
+  HomeOutlined,
   InstagramOutlined,
+  LikeOutlined,
   MailOutlined,
   PhoneOutlined,
+  SettingOutlined,
   ShoppingOutlined,
   TwitterOutlined,
   UserOutlined,
@@ -14,7 +21,7 @@ import { Link } from 'react-router-dom'
 import { ROUTES } from 'constants/routes'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutRequest } from 'redux/slicers/auth.slice'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 const Header = () => {
   const dispatch = useDispatch()
   const { cartList } = useSelector((state) => state.cart)
@@ -45,44 +52,24 @@ const Header = () => {
     [userInfo.data.id]
   )
 
+  const [open, setOpen] = useState(false)
+  const [placement, setPlacement] = useState('left')
+  const showDrawer = () => {
+    setOpen(true)
+  }
+  const onClose = () => {
+    setOpen(false)
+  }
+  const onChange = (e) => {
+    setPlacement(e.target.value)
+  }
   return (
     <S.HeaderWrapper>
       <S.Container>
-        <S.TopBar>
-          <Row align="middle">
-            <Col lg={10} className="tb-left" md={10} xs={10}>
-              <span style={{ marginRight: 20 }}>Follow us</span>
-              <Space>
-                <S.TopBarIcon>
-                  <FacebookOutlined />
-                </S.TopBarIcon>
-                <S.TopBarIcon>
-                  <TwitterOutlined />
-                </S.TopBarIcon>
-                <S.TopBarIcon>
-                  <YoutubeOutlined />
-                </S.TopBarIcon>
-                <S.TopBarIcon>
-                  <InstagramOutlined />
-                </S.TopBarIcon>
-              </Space>
-            </Col>
-            <Col lg={14} className="tb-right" md={10} xs={10}>
-              <span style={{ marginRight: 30 }}>
-                <PhoneOutlined style={{ marginRight: 10 }} />
-                0935161910
-              </span>
-              <span>
-                <MailOutlined style={{ marginRight: 10 }} />
-                dangthanh.610@gmail.com
-              </span>
-            </Col>
-          </Row>
-        </S.TopBar>
         <S.Menu>
           <S.MenuContainer>
             <Row align="middle">
-              <Col span={8}>
+              <Col lg={8} md={24} xs={24}>
                 <Link to={ROUTES.USER.HOME}>
                   <S.Logo>
                     <img
@@ -92,7 +79,7 @@ const Header = () => {
                   </S.Logo>
                 </Link>
               </Col>
-              <Col span={10}>
+              <Col lg={10} style={{ textAlign: 'center' }}>
                 <S.NavBar>
                   <S.NavBarList>
                     <Row justify="space-between">
@@ -120,7 +107,7 @@ const Header = () => {
                   </S.NavBarList>
                 </S.NavBar>
               </Col>
-              <Col span={6}>
+              <Col lg={6}>
                 <Row align="middle">
                   <Col lg={12}>
                     {userInfo.data.id ? (
@@ -141,14 +128,75 @@ const Header = () => {
                   </Col>
                   <Col lg={12}>
                     <Link to={ROUTES.USER.CART}>
-                      <Badge count={cartList.length}>
+                      <Badge
+                        count={cartList.length}
+                        size="default"
+                        className="cartContainer"
+                      >
                         <S.Cart>
-                          <ShoppingOutlined />
+                          <ShoppingOutlined style={{ fontSize: 25 }} />
                         </S.Cart>
                       </Badge>
                     </Link>
                   </Col>
                 </Row>
+              </Col>
+            </Row>
+            <Row className="NavBarMb">
+              <Col span={24} style={{ textAlign: 'center', marginTop: 30 }}>
+                <Button
+                  type="primary"
+                  onClick={showDrawer}
+                  icon={<AlignLeftOutlined />}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    borderRadius: '50%',
+                  }}
+                ></Button>
+                <Drawer
+                  title="Menu"
+                  placement={placement}
+                  closable={false}
+                  onClose={onClose}
+                  open={open}
+                  key={placement}
+                >
+                  <Link to={ROUTES.USER.HOME}>
+                    <S.NavBarItemMb onClick={() => onClose()}>
+                      <HomeOutlined />
+                      Trang chủ
+                    </S.NavBarItemMb>
+                  </Link>
+                  <Link to={ROUTES.USER.PRODUCT_LIST}>
+                    <S.NavBarItemMb onClick={() => onClose()}>
+                      <LikeOutlined />
+                      Sản phẩm
+                    </S.NavBarItemMb>
+                  </Link>
+                  <Link to={ROUTES.CONTACT}>
+                    <S.NavBarItemMb onClick={() => onClose()}>
+                      <PhoneOutlined /> Liên Hệ
+                    </S.NavBarItemMb>
+                  </Link>
+                  <Link to={ROUTES.USER.HOME}>
+                    <S.NavBarItemMb onClick={() => onClose()}>
+                      <BookOutlined />
+                      Tin tức
+                    </S.NavBarItemMb>
+                  </Link>
+                  <Link to={ROUTES.USER.CART}>
+                    <S.NavBarItemMb onClick={() => onClose()}>
+                      <ShoppingOutlined />
+                      Giỏ Hàng
+                    </S.NavBarItemMb>
+                  </Link>
+                  <Link to={ROUTES.PROFILE}>
+                    <S.NavBarItemMb onClick={() => onClose()}>
+                      <UserOutlined /> Tài khoản
+                    </S.NavBarItemMb>
+                  </Link>
+                </Drawer>
               </Col>
             </Row>
           </S.MenuContainer>

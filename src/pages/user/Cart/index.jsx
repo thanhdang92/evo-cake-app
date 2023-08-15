@@ -29,7 +29,12 @@ const CartPage = () => {
       })
     )
   }
-
+  const dataTable = cartList.map((item) => {
+    return {
+      ...item,
+      key: item.productId,
+    }
+  })
   const columns = [
     {
       title: 'Name',
@@ -88,49 +93,67 @@ const CartPage = () => {
   return (
     <S.CartPagaWrapper>
       <S.CartPagaContainer>
-        <Row gutter={[20, 20]}>
-          <Col lg={16} md={24} xs={24}>
-            <Row gutter={[20, 20]} style={{ padding: 20 }}>
-              <Col lg={12} md={12} xs={24} style={{ fontSize: 30 }}>
-                Giỏ hàng của bạn
+        {cartList.length > 0 ? (
+          <Row gutter={[20, 20]}>
+            <Col lg={16} md={24} xs={24}>
+              <Row style={{ padding: 20 }}>
+                <Col span={24} style={{ fontSize: 30 }}>
+                  Giỏ hàng của bạn
+                </Col>
+              </Row>
+              <Row>
+                <Col lg={24}>
+                  <S.TableCartList>
+                    <Table
+                      dataSource={dataTable}
+                      columns={columns}
+                      pagination={false}
+                      rowKey={cartList.productId}
+                    />
+                  </S.TableCartList>
+                </Col>
+              </Row>
+            </Col>
+            <Col lg={8} md={24} xs={24} style={{ border: '1px solid #ddd' }}>
+              <Row gutter={[20, 30]} style={{ padding: 30 }}>
+                <Col span={24} style={{ fontSize: 18 }} align="middle">
+                  Tổng tiền:
+                  <span style={{ fontSize: 22, color: 'red', fontWeight: 500 }}>
+                    {total.toLocaleString()}đ
+                  </span>
+                </Col>
+                <Col span={24} style={{ fontSize: 20, textAlign: 'center' }}>
+                  Bạn đang có{' '}
+                  <span style={{ color: 'red', fontWeight: 600 }}>
+                    {cartList.length}
+                  </span>{' '}
+                  sản phẩm
+                </Col>
+                <Col span={24} align="middle">
+                  <Link to={ROUTES.USER.CHECKOUT}>
+                    <S.CheckOutBtn>Thanh Toán</S.CheckOutBtn>
+                  </Link>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        ) : (
+          <S.CartEmpty>
+            <Row gutter={[20, 20]}>
+              <Col
+                lg={24}
+                style={{ textAlign: 'center', fontSize: 30, fontWeight: 500 }}
+              >
+                Không có sản phẩm trong giỏ hàng
               </Col>
-              <Col lg={12} md={12} xs={24} style={{ fontSize: 20 }}>
-                Bạn đang có{' '}
-                <span style={{ color: 'red', fontWeight: 600 }}>
-                  {cartList.length}
-                </span>{' '}
-                sản phẩm
-              </Col>
-            </Row>
-            <Row>
-              <Col lg={24}>
-                <S.TableCartList>
-                  <Table
-                    dataSource={cartList}
-                    columns={columns}
-                    pagination={false}
-                    rowKey="id"
-                  />
-                </S.TableCartList>
-              </Col>
-            </Row>
-          </Col>
-          <Col lg={8} md={24} xs={24} style={{ border: '1px solid #ddd' }}>
-            <Row gutter={[20, 30]} style={{ padding: 30 }}>
-              <Col span={24} style={{ fontSize: 18 }} align="middle">
-                Tổng tiền:
-                <span style={{ fontSize: 22, color: 'red', fontWeight: 500 }}>
-                  {total.toLocaleString()}đ
-                </span>
-              </Col>
-              <Col span={24} align="middle">
-                <Link to={ROUTES.USER.CHECKOUT}>
-                  <S.CheckOutBtn>Thanh Toán</S.CheckOutBtn>
+              <Col lg={24} style={{ textAlign: 'center' }}>
+                <Link to={ROUTES.USER.PRODUCT_LIST}>
+                  <span style={{ fontSize: 20 }}>Bấm để tiếp tục mua hàng</span>
                 </Link>
               </Col>
             </Row>
-          </Col>
-        </Row>
+          </S.CartEmpty>
+        )}
       </S.CartPagaContainer>
     </S.CartPagaWrapper>
   )

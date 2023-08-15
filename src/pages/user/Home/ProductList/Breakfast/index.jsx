@@ -3,6 +3,8 @@ import { ShoppingCartOutlined } from '@ant-design/icons'
 import * as S from './styles'
 import { useSelector } from 'react-redux'
 import { useMemo } from 'react'
+import { Link, generatePath } from 'react-router-dom'
+import { ROUTES } from 'constants/routes'
 
 const Breakfast = () => {
   const { productList } = useSelector((state) => state.product)
@@ -35,12 +37,18 @@ const Breakfast = () => {
               </S.ProductInfo>
               <S.AddToCartButton>
                 <Row justify="space-between" align="middle">
-                  <Col lg={18}>
+                  <Col lg={18} md={12} xs={12}>
                     <S.ShowProductButton>
-                      <Button>Xem thêm</Button>
+                      <Link
+                        to={generatePath(ROUTES.USER.PRODUCT_DETAIL, {
+                          id: item.id,
+                        })}
+                      >
+                        <Button>Xem thêm</Button>
+                      </Link>
                     </S.ShowProductButton>
                   </Col>
-                  <Col lg={6}>
+                  <Col lg={6} md={12} xs={12}>
                     <S.IconCart>
                       <Button type="text">
                         <ShoppingCartOutlined />

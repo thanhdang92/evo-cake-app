@@ -44,7 +44,7 @@ function FavoriteProducts() {
       title: 'Giá tiền',
       dataIndex: 'price',
       key: 'price',
-      render: (_, item) => `${item.price}`,
+      render: (_, item) => `${item.price.toLocaleString()}VNĐ`,
     },
   ]
   const favoriteListProduct = favoriteList.data.map((item) => item.product)

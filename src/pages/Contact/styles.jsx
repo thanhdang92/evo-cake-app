@@ -3,7 +3,11 @@ import styled from 'styled-components'
 export const ContactPageWrapper = styled.div`
   background-color: #ddd;
 `
-
+export const Container = styled.div`
+  width: 85%;
+  margin: 0 auto;
+  background-color: #fff;
+`
 export const Info = styled.div`
   width: 85%;
   margin: 0 auto;

@@ -48,19 +48,38 @@ export const MenuContainer = styled.div`
   width: 85%;
   margin: 0 auto;
   padding: 30px 0;
+
+  @media (max-width: 1024px) {
+    .cartContainer {
+      display: none;
+    }
+  }
+  .NavBarMb {
+    display: none;
+  }
+  @media (max-width: 1024px) {
+    .NavBarMb {
+      display: block;
+    }
+  }
 `
 export const Logo = styled.div`
   width: 100%;
-
+  text-align: center;
   img {
-    width: 40%;
+    width: 100px;
     height: 40px;
   }
 `
 
 export const NavBar = styled.div``
 
-export const NavBarList = styled.div``
+export const NavBarList = styled.div`
+  display: block;
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`
 export const NavBarItem = styled.div`
   text-transform: uppercase;
   font-size: 16px;
@@ -84,13 +103,25 @@ export const User = styled.div`
   &:hover {
     color: #ddac52;
   }
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `
 export const Cart = styled.div`
   color: #555;
-  font-size: 35px;
   font-weight: 600;
   cursor: pointer;
   &:hover {
     color: #ddac52;
+  }
+`
+export const NavBarItemMb = styled.div`
+  text-align: left;
+  padding: 15px;
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+  span {
+    margin-right: 10px;
   }
 `
